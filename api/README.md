@@ -217,7 +217,7 @@ Content-Type: application/json
 #### Response
 ```json
 {
-  "action: "success",
+  "action": "success",
   "message": "Package nginx installed successfully"
 }
 ```

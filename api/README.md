@@ -5,7 +5,7 @@ This is the v1 API documentation for krtrl.
 
 ## Endpoints
 - [GET /api/v1/](#get-apiv1)
-- [GET /api/v1/systemInfo](#get-apiv1systemInfo)
+- [GET /api/v1/system/info](#get-apiv1systeminfo)
 - [GET /api/v1/packageList](#get-apiv1packageList)
 - [GET /api/v1/containers](#get-apiv1containers)
 - [GET /api/v1/services](#get-apiv1services)
@@ -13,6 +13,8 @@ This is the v1 API documentation for krtrl.
 - [POST /api/v1/services](#post-apiv1services)
 - [POST /api/v1/packageList](#post-apiv1packageList)
 - [POST /api/v1/containers](#post-apiv1containers)
+- [POST /api/v1/system/reboot](#post-apiv1systemreboot)
+- [POST /api/v1/system/portForward](#post-apiv1systemportForward)
 
 ### GET /api/v1/
 This is the base endpoint for the API. It returns a JSON object with the full API version and the daemon name.
@@ -30,12 +32,12 @@ GET /api/v1/
 }
 ```
 
-### GET /api/v1/systemInfo
+### GET /api/v1/system/info
 This endpoint returns the system information of the server.
 
 #### Request
 ```http
-GET /api/v1/systemInfo
+GET /api/v1/system/info
 ```
 
 #### Response
@@ -43,7 +45,8 @@ GET /api/v1/systemInfo
 {
   "system": {
     "hostname": "krtrl",
-    "os": "Ubuntu 20.04",
+    "os": "ubuntu",
+    "osPrettyName": "Ubuntu 20.04",
     "packageManager": "apt",
     "initSystem": "systemd",
     "platform": "linux",
@@ -244,3 +247,42 @@ Content-Type: application/json
   "message": "Container nginx upgraded successfully"
 }
 ```
+
+### POST /api/v1/system/reboot
+This endpoint allows you to reboot the server.
+
+#### Request
+```http
+POST /api/v1/system/reboot
+```
+
+#### Response
+```json
+{
+  "action": "success",
+  "message": "Server rebooted successfully"
+}
+```
+
+### POST /api/v1/system/portForward
+This endpoint allows you to forward a port from the server to the host.
+
+#### Request
+```http
+POST /api/v1/system/portForward
+Content-Type: application/json
+
+{
+  "host": "80",
+  "target": "80"
+}
+```
+
+#### Response
+```json
+{
+  "action": "success",
+  "message": "Port 80 forwarded to container port 80 successfully"
+}
+```
+

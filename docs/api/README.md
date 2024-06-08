@@ -10,6 +10,7 @@ This is the v1 API documentation for krtrl.
 - [GET /api/v1/containers](#get-apiv1containers)
 - [GET /api/v1/services](#get-apiv1services)
 - [GET /api/v1/logs](#get-apiv1logs)
+- [GET /api/v1/system/ports/list](#get-apiv1systemportslist)
 - [POST /api/v1/services](#post-apiv1services)
 - [POST /api/v1/packageList](#post-apiv1packageList)
 - [POST /api/v1/containers](#post-apiv1containers)
@@ -163,6 +164,36 @@ GET /api/v1/services
   ]
 }
 ```
+
+
+### GET /api/v1/system/ports/list
+This endpoint returns the list of all ports forwarded from the server to the host.
+
+#### Request
+```http
+GET /api/v1/system/ports/list
+```
+
+#### Response
+```json
+{
+  "ports": [
+    {
+      "host": "80",
+      "target": "80",
+      "type": "tcp",
+      "process": "nginx"
+    },
+    {
+      "host": "3306",
+      "target": "3306",
+      "type": "udp",
+      "process": "mysql"
+    }
+    ]
+}
+```
+
 
 ### POST /api/v1/services
 This endpoint allows you to start, stop, or restart a system service on the server.

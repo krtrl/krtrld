@@ -6,6 +6,7 @@ import strutils
 ## API Imports
 import ../api/system/info
 import ../api/system/portForward
+import ../api/services/info
 
 proc apiInit*() =
     routes:
@@ -24,7 +25,7 @@ proc apiInit*() =
 
         get "/api/v1/packages/info":
             resp "TBD"
-            #resp getPackageInfo()
+            #resp getPackageInfo(request.params["name"])
 
         # Container API
 
@@ -39,8 +40,7 @@ proc apiInit*() =
         # Service API
 
         get "/api/v1/services/info":
-            resp "TBD"
-            #resp getServiceInfo()
+            resp getServiceInfo(request.params["name"])
 
         get "/api/v1/services/list":
             resp "TBD"

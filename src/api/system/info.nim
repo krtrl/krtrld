@@ -1,13 +1,6 @@
-import os, json, cpuinfo
-when hostOS == "linux":
-    import ../../backends/linux/main
-    import ../../backends/linux/distro
-#when hostOS == "windows":
-#    import ../../backends/windows/main
-#when hostOS == "freebsd":
-#    import ../../backends/freebsd/main
-#when hostOS == "darwin":
-#    import ../../backends/darwin/main
+import json, cpuinfo
+import ../../backends/wrapper/main
+import ../../backends/linux/distro
 
 proc getSysInfo*(): JsonNode =
     ## Gets systemInfo.

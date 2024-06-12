@@ -1,18 +1,12 @@
 import os, json
-when hostOS == "linux":
-    import ../../backends/linux/init
-#when hostOS == "windows":
-#    import ../../backends/windows/main
-#when hostOS == "freebsd":
-#    import ../../backends/freebsd/main
-#when hostOS == "darwin":
-#    import ../../backends/darwin/main
-
-proc getServiceInfo*(name: string): JsonNode =
-    ## Gets the service information
+import ../../backends/wrapper/packages
+    
+proc getPackageInfo*(name: string): JsonNode =
+    ## Gets the package information
     %*{
         "name": name,
-        "status": "running",
-        "pid": 1234,
+        "version": "1.0.0", 
+        "description": "A package that does something",
+        "repository": ""
       } 
 

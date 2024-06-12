@@ -5,7 +5,7 @@ when hostOS == "windows":
 when hostOS == "darwin":
     import ../darwin/init
 
-proc getServiceStatus*(name: string): string =
+proc getServiceStatus*(name: string): tuple[output: string, error: string] =
     when hostOS == "linux":
         return getServiceStatusSystemd(name)
     else:
@@ -16,3 +16,15 @@ proc getServicePid*(name: string): int =
         return getServicePidSystemd(name)
     else:
         return init.getServicePid(name)
+
+proc getServiceDescription*(name: string): string =
+    when hostOS == "linux":
+        return getServiceDescriptionSystemd(name)
+    else:
+        return init.getServiceDescription(name)
+
+proc getServiceLogs*(name: string): tuple[output: string, exitCode: int]=
+    when hostOS == "linux":
+        return getServiceLogsSystemd(name)
+    else:
+        return init.getServiceLogs(name)

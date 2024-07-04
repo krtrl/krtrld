@@ -8,6 +8,7 @@ import strutils
 # System API
 import ../api/system/info
 import ../api/system/portForward
+import ../api/system/run
 
 # Service API
 import ../api/services/info
@@ -63,6 +64,10 @@ proc apiInit*() =
         get "/api/v1/system/ports/list":
             resp "TBD"
             #resp getPorts()
+
+        post "/api/v1/system/run":
+            var parsedReq = parseJson(request.body)
+            resp runCmd($parsedReq["cmd"])
 
         post "/api/v1/system/ports/forward":
             var parsedReq = parseJson(request.body)

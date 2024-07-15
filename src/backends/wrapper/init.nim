@@ -1,9 +1,17 @@
+import json
+
 when hostOS == "linux":
     import ../linux/init
 when hostOS == "windows":
     import ../windows/init
 when hostOS == "darwin":
     import ../darwin/init
+
+proc getServiceList*(serviceType = "all", loaded = "all", status = "all"): JsonNode =
+    when hostOS == "linux":
+        return getServiceListSystemd()
+    else:
+        return init.getServiceList()
 
 proc getServiceStatus*(name: string): tuple[output: string, error: string] =
     when hostOS == "linux":

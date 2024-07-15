@@ -51,8 +51,7 @@ proc apiInit*() =
             resp getServiceInfo(@"name")
 
         get "/api/v1/services/list":
-            resp "TBD"
-            #resp getServiceList()
+            resp getServiceList()
         
         get "/api/v1/services/@name/logs":
             resp getServiceLogs(@"name")

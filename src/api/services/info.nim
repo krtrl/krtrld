@@ -2,6 +2,10 @@ import os, json
 import strutils
 import ../../backends/wrapper/init
 
+proc getServiceList*(): JsonNode =
+    ## Returns the service list.
+    return init.getServiceList()
+
 proc getServiceInfo*(name: string): JsonNode =
     ## Gets the service information
     let serviceStatus = getServiceStatus(name)

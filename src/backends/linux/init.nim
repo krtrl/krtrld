@@ -1,5 +1,11 @@
+import std/json
 import std/osproc
 import std/strutils
+
+proc getServiceListSystemd*(): JsonNode =
+    ## Gets list of services.
+    let serviceList = parseJson(execCmdEx("systemctl list-units --output json").output)
+    return serviceList
 
 proc getServiceStatusSystemd*(service: string): tuple[output: string, error: string] =
     ## Gets service status.

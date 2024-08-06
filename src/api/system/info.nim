@@ -4,6 +4,7 @@ import ../../backends/linux/distro
 
 proc getSysInfo*(): JsonNode =
     ## Gets systemInfo.
+
     %*{
         "system": {
             "hostname": getHostname(),

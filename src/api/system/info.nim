@@ -10,7 +10,7 @@ proc getSysInfo*(): JsonNode =
             "hostname": getHostname(),
             "os": getDistroName().id,
             "osPrettyName": getDistroName().prettyName,
-            "packageManager": getPackageManager(),
+            "packageManagers": getPackageManager(),
             "initSystem": getInit(),
             "platform": hostOS,
             "arch": hostCPU,

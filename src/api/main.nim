@@ -66,7 +66,8 @@ proc apiInit*() =
 
         post "/api/v1/system/run":
             var parsedReq = parseJson(request.body)
-            resp runCmd($parsedReq["cmd"])
+            let wantsDaemon = parsedReq["daemon"].getBool()
+            resp runCmd(parsedReq["cmd"].getStr(), wantsDaemon)
 
         post "/api/v1/system/ports/forward":
             var parsedReq = parseJson(request.body)

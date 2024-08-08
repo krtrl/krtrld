@@ -17,8 +17,8 @@ import ../api/services/logs
 # Package API
 import ../api/packages/info
 
-proc apiInit*() =
-    routes:
+proc apiInit*(port: int) =
+    router krtrlApi:
         get "/api/v1/":
             resp %*{
                     "version": version,
@@ -128,3 +128,6 @@ proc apiInit*() =
         post "/api/v1/plugins/@name/disable":
             resp "TBD"
             #resp disablePlugin(@"name")
+
+    var jester = initJester(krtrlApi, settings=newSettings(port=Port(port)))
+    jester.serve()
